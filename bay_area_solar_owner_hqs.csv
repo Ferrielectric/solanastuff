@@ -1,13 +1,13 @@
-Number,Company,Type,Address,City,Latitude,Longitude,Note
-1,Pattern Energy,Developer / owner,"Pier 1, Bay 3","San Francisco, CA 94111",37.7987,-122.3972,
-2,Clearway Energy Group,Developer / owner,"100 California St, Suite 400","San Francisco, CA 94111",37.7932,-122.3979,Confirm suite (400 or 650)
-3,Linea Energy,Developer / owner,230 California St,"San Francisco, CA 94111",37.7937,-122.3998,
-4,Lightsource bp (US),Developer / owner,"400 Montgomery St, 8th Floor","San Francisco, CA 94104",37.7936,-122.4031,"Also listed at 101 California St, Ste 2880"
-5,Intersect Power,Developer / owner,140 New Montgomery St,"San Francisco, CA 94105",37.7868,-122.4002,Reported acquired by Alphabet Dec 2025
-6,Ecoplexus,Developer / owner,101 Second St,"San Francisco, CA 94105",37.7881,-122.3989,Directory address only
-7,Generate Capital,Investor-owner,"560 Davis St, Suite 250","San Francisco, CA 94111",37.7995,-122.3996,
-8,SB Energy,Developer / owner,Street address not published,"Redwood City, CA",37.4852,-122.2364,City-level location; HQ listed as San Francisco
-9,PG&E,Utility,300 Lakeside Dr,"Oakland, CA 94612",37.8087,-122.2640,
-10,Primergy Solar,Developer / owner,"1901 Harrison St, Suite 1600","Oakland, CA 94612",37.8104,-122.2647,
-11,Adapture Renewables,Developer / owner,"1901 Harrison St, Suite 1630","Oakland, CA 94612",37.8104,-122.2647,
-12,Recurrent Energy,Developer / owner,"3000 Oak Rd, Suite 300","Walnut Creek, CA 94597",37.9286,-122.0573,Some sources list Austin TX as HQ
+Rank,Company,Fit tier,Address,City,Latitude,Longitude,Main phone,Economic buyer,Technical buyer,Note
+1,IPX Power (ex-Intersect),A,140 New Montgomery St,"San Francisco, CA 94105",37.7868,-122.4002,,"John K. Martinez, COO","Performance Engineering Manager (open role)",IPX office address unconfirmed; 140 New Montgomery is Intersect (Google)
+2,SB Energy,A,"3 Lagoon Dr, Suite 280","Redwood City, CA 94065",37.5268,-122.2556,(650) 731-3262,"Anthony De Vito, Sr. Director Asset Management","Andy Singh, Director Software Architecture",Remote operations center in Redwood City
+3,Clearway Energy Group,A,"100 California St, Suite 650","San Francisco, CA 94111",37.7932,-122.3979,415-627-1600,"Dan Summa, COO","Andrew Worts, VP Operations",Ops engineering in Scottsdale AZ
+4,Primergy Solar,A,"1901 Harrison St, Suite 1600","Oakland, CA 94612",37.8104,-122.2647,510-910-9087,"Todd Lacoste, VP Asset Management","Sr. Manager Performance Engineering (open role)",Gemini 690 MWac near Las Vegas
+5,Adapture Renewables,B,"1901 Harrison St, Suite 1630","Oakland, CA 94612",37.8104,-122.2647,(844) 367-7272,"Thomas Houghton, CEO","Director of Optimization Engineering (open role)",Same floor as Primergy
+6,Lightsource bp (US),B,"400 Montgomery St, 8th Floor","San Francisco, CA 94104",37.7936,-122.4031,(415) 523-0200,"Emilie Wangerman, COO USA","Andrew Dean, Head of Global Performance & Monitoring",bp reported in talks to sell (Jul 2026)
+7,Linea Energy,B,230 California St,"San Francisco, CA 94111",37.7937,-122.3998,,"Cassidy DeLine, CEO","Yochai Ben-Haim, Director Asset Management",80 MWac operating; ~0.7 GW coming
+8,Recurrent Energy,B,"3000 Oak Rd, Suite 300","Walnut Creek, CA 94597",37.9286,-122.0573,(415) 675-1500,"Dylan Marx, CEO","Jimmy Nguyen, Director Ops & Integrations, Power Services",HQ now reported in Austin; office may be inactive
+9,Generate Capital,C,"650 Davis St, Suite 200","San Francisco, CA 94111",37.7981,-122.3990,(415) 360-3063,"Sarie Lovell, SVP Head of Asset Management & Ops","Aina Jumabaeva, VP Asset Management",Mostly small community solar sites
+10,Pattern Energy,C,1088 Sansome St,"San Francisco, CA 94111",37.7995,-122.4027,(415) 283-4000,"Andre Walker, SVP Power Operations",,Mostly wind; ops in Houston; older filings list Pier 1 Bay 3
+11,PG&E,C,300 Lakeside Dr,"Oakland, CA 94612",37.8087,-122.2640,415-973-1000,"Dave Gabbard, VP Power Generation","Tim Wisdom, Director Fossil & Renewables O&M",Owns only 152 MW of solar
+12,Ecoplexus,C,"101 Second St, Suite 1250","San Francisco, CA 94105",37.7881,-122.3989,(415) 626-1802 (unverified),"John Gorman, CEO","Cesar Zuniga, Asset Manager",SF office may be closed
