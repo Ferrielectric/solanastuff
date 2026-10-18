@@ -1,0 +1,13 @@
+Number,Company,Type,Address,City,Latitude,Longitude,Note
+1,Pattern Energy,Developer / owner,"Pier 1, Bay 3","San Francisco, CA 94111",37.7987,-122.3972,
+2,Clearway Energy Group,Developer / owner,"100 California St, Suite 400","San Francisco, CA 94111",37.7932,-122.3979,Confirm suite (400 or 650)
+3,Linea Energy,Developer / owner,230 California St,"San Francisco, CA 94111",37.7937,-122.3998,
+4,Lightsource bp (US),Developer / owner,"400 Montgomery St, 8th Floor","San Francisco, CA 94104",37.7936,-122.4031,"Also listed at 101 California St, Ste 2880"
+5,Intersect Power,Developer / owner,140 New Montgomery St,"San Francisco, CA 94105",37.7868,-122.4002,Reported acquired by Alphabet Dec 2025
+6,Ecoplexus,Developer / owner,101 Second St,"San Francisco, CA 94105",37.7881,-122.3989,Directory address only
+7,Generate Capital,Investor-owner,"560 Davis St, Suite 250","San Francisco, CA 94111",37.7995,-122.3996,
+8,SB Energy,Developer / owner,Street address not published,"Redwood City, CA",37.4852,-122.2364,City-level location; HQ listed as San Francisco
+9,PG&E,Utility,300 Lakeside Dr,"Oakland, CA 94612",37.8087,-122.2640,
+10,Primergy Solar,Developer / owner,"1901 Harrison St, Suite 1600","Oakland, CA 94612",37.8104,-122.2647,
+11,Adapture Renewables,Developer / owner,"1901 Harrison St, Suite 1630","Oakland, CA 94612",37.8104,-122.2647,
+12,Recurrent Energy,Developer / owner,"3000 Oak Rd, Suite 300","Walnut Creek, CA 94597",37.9286,-122.0573,Some sources list Austin TX as HQ
