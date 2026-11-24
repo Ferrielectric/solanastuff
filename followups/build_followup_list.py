@@ -47,15 +47,20 @@ NEGATIVE_STAGES = {"Not Interested", "Do Not Contact", "Bad Data", "Changed Job"
 
 # Call notes that mean "don't automate this person".
 NEGATIVE_NOTE = re.compile(
-    r"remove|not interested|no interest|don'?t call|do not call|stop|"
+    r"remove|not interested|no interest|do not (call|email|contact)|"
     r"not at .* anymore|no longer|left the company|retired|wrong (person|number)|"
     r"no real lead|not a fit|unsubscribe",
     re.I,
 )
-# Call notes that mean a live conversation / meeting is in flight.
-ENGAGED_NOTE = re.compile(
-    r"meeting|demo|scheduled|calendar|call back|callback|follow ?up|intro|"
-    r"interested|send (me|over|info)|loop in|next week",
+# Call notes that mean a live thread at the company: holds the whole org.
+STRONG_ENGAGED_NOTE = re.compile(
+    r"meeting|demo|pilot|intro|connect(ing)? me|forward|reach out to|loop in|"
+    r"will talk|talk tomorrow",
+    re.I,
+)
+# Call notes that mean this person needs a human touch next (person only).
+WEAK_ENGAGED_NOTE = re.compile(
+    r"call ?back|follow ?up|send (me|over|info|an? email|email)|next week|tomorrow",
     re.I,
 )
 BAD_EMAIL_STATUS = {"unavailable", "bounced", "invalid"}
@@ -66,6 +71,8 @@ FREE_DOMAINS = {"gmail.com", "yahoo.com", "outlook.com", "hotmail.com", "icloud.
 def org_key(c):
     if c.get("organization_id"):
         return "org:" + c["organization_id"]
+    if c.get("account") and c["account"].get("domain"):
+        return "dom:" + c["account"]["domain"].lower()
     email = (c.get("email") or "").lower()
     if "@" in email:
         dom = email.split("@", 1)[1]
@@ -84,6 +91,8 @@ def main():
     out_dir.mkdir(parents=True, exist_ok=True)
 
     # Outcome names may come as {id: name} or a list of {id, name}.
+    if isinstance(outcomes, dict) and isinstance(outcomes.get("outcomes"), dict):
+        outcomes = outcomes["outcomes"]
     if isinstance(outcomes, list):
         outcomes = {o["id"]: o.get("name") or o.get("display_name") for o in outcomes}
 
@@ -95,6 +104,8 @@ def main():
             return "negative"
         if any(w in name for w in ("interested", "meeting", "positive", "demo", "booked")):
             return "positive"
+        if "connected" in name:
+            return "talked"     # spoke with them, no clear signal: hands-on, no org hold
         return "neutral"
 
     calls_by_contact = defaultdict(list)
@@ -109,10 +120,13 @@ def main():
         cc = calls_by_contact.get(c["id"], [])
         notes = " | ".join((x.get("note_text") or "").strip() for x in cc if x.get("note_text"))
         kinds = {outcome_kind(x.get("phone_call_outcome_id")) for x in cc}
-        engaged = stage in ENGAGED_STAGES or "positive" in kinds or bool(ENGAGED_NOTE.search(notes))
-        negative = stage in NEGATIVE_STAGES or "negative" in kinds or bool(NEGATIVE_NOTE.search(notes))
+        engaged = stage in ENGAGED_STAGES or "positive" in kinds or bool(STRONG_ENGAGED_NOTE.search(notes))
+        talked = "talked" in kinds or bool(WEAK_ENGAGED_NOTE.search(notes))
+        negative = stage in NEGATIVE_STAGES or (
+            stage not in ENGAGED_STAGES
+            and ("negative" in kinds or bool(NEGATIVE_NOTE.search(notes))))
         person[c["id"]] = dict(stage=stage, calls=len(cc), notes=notes,
-                               engaged=engaged, negative=negative,
+                               engaged=engaged, negative=negative, talked=talked,
                                last_call=max((x.get("start_time") or "" for x in cc), default=""))
 
     # Pass 2: which companies are "in conversation".
@@ -136,6 +150,8 @@ def main():
             reason = "negative response / remove (hands-on)"
         elif p["engaged"]:
             reason = "in conversation / meeting (hands-on)"
+        elif p["talked"]:
+            reason = "spoke on the phone / call-back pending (hands-on)"
         elif key in engaged_orgs:
             reason = "company in conversation via " + ", ".join(engaged_orgs[key][:3])
         elif p["stage"] not in NUDGEABLE_STAGES:
